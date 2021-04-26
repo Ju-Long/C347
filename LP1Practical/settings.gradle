@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "LP1 Practical"
