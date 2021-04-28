@@ -27,8 +27,8 @@ public class HeroStatsActivity extends AppCompatActivity {
         btnDislike = (Button) findViewById(R.id.buttonDislike);
 
         textViewName.setText(hero.getName());
-        textViewStrength.setText(hero.getStrength());
-        textViewTechnicalProwess.setText(hero.getTechnicalProwess());
+        textViewStrength.setText(String.valueOf(hero.getStrength()));
+        textViewTechnicalProwess.setText(String.valueOf(hero.getTechnicalProwess()));
 
         btnLike.setOnClickListener(v -> {
             Intent n = new Intent();
