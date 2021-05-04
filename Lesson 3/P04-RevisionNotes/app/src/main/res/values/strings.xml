@@ -9,6 +9,7 @@
     <string name="one">1</string>
     <string name="show_list">Show List</string>
     <string name="insert">Insert</string>
+    <string name='show_good'>Show Good</string>
     <string name="title_activity_main">MainActivity - Insert</string>
     <string name="title_activity_second">SecondActivity - Select</string>
 </resources>

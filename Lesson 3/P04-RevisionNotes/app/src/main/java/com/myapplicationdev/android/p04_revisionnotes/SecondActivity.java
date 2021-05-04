@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class SecondActivity extends AppCompatActivity {
 
 	ListView lv;
-	ArrayList<Note> aa;
+	ArrayList<Note> aa, filteredaa;
 	RevisionNotesArrayAdapter al;
 
 	@Override
@@ -21,11 +21,23 @@ public class SecondActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_second);
 		//TODO implement the Custom ListView
+
+		Intent intent = getIntent();
+		boolean good = intent.getBooleanExtra("good", false);
+
 		lv = (ListView) findViewById(R.id.lv);
 
 		DBHelper db = new DBHelper(SecondActivity.this);
 		aa = db.getAllNotes();
-		al = new RevisionNotesArrayAdapter(this, R.layout.row, aa);
+		filteredaa = new ArrayList<>();
+		if (good) {
+			for (Note i: aa) {
+				if (i.getStars() > 3)
+					filteredaa.add(i);
+			}
+			al = new RevisionNotesArrayAdapter(this, R.layout.row, filteredaa);
+		} else
+			al = new RevisionNotesArrayAdapter(this, R.layout.row, aa);
 		lv.setAdapter(al);
 	}
 }

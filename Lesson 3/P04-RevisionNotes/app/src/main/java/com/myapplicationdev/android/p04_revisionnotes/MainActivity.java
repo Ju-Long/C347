@@ -13,13 +13,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     RadioButton rgStar;
     RadioGroup rgStars;
     EditText etNote;
-    Button btnInsertNote, btnShowList;
+    Button btnInsertNote, btnShowList, btnShowGood;
+    ArrayList<String> aa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +32,20 @@ public class MainActivity extends AppCompatActivity {
         etNote = (EditText) findViewById(R.id.editTextNote);
         btnInsertNote = (Button) findViewById(R.id.buttonInsertNote);
         btnShowList = (Button) findViewById(R.id.buttonShowList);
+        btnShowGood = (Button) findViewById(R.id.buttonShowGood);
+
+
+        final Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 
         btnInsertNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rgStar = (RadioButton) findViewById(rgStars.getCheckedRadioButtonId());
                 DBHelper db = new DBHelper(MainActivity.this);
-                if (Integer.valueOf(rgStar.getText().toString()) > 0 && !etNote.getText().toString().isEmpty()) {
+                aa = db.getNoteContent();
+                if (Integer.valueOf(rgStar.getText().toString()) > 0 && !etNote.getText().toString().isEmpty() && !aa.contains(etNote.getText().toString())) {
 
-                    db.insertNote(etNote.getText().toString(), Integer.valueOf(rgStar.getText().toString()));
+                    db.insertNote(etNote.getText().toString().trim(), Integer.valueOf(rgStar.getText().toString()));
                     Log.d("Insert Database", "added into database");
                 } else
                     Log.d("Insert Database", "Failed to insert, no value entries");
@@ -48,7 +55,15 @@ public class MainActivity extends AppCompatActivity {
         btnShowList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("good", false);
+                startActivity(intent);
+            }
+        });
+
+        btnShowGood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("good", true);
                 startActivity(intent);
             }
         });
