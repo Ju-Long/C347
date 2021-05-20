@@ -73,6 +73,6 @@ public class FragmentFirst extends Fragment {
             tvFrag1.setText(data);
         });
 
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        return view;
     }
 }

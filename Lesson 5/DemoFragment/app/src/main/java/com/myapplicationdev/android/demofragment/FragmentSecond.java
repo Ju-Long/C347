@@ -72,6 +72,6 @@ public class FragmentSecond extends Fragment {
             String data = tvFrag2.getText().toString() + "\n" + "New Data F2";
             tvFrag2.setText(data);
         });
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        return view;
     }
 }
