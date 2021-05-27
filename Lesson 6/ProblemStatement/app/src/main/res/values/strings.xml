@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Problem Statement</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="color">Change Color</string>
+    <string name="fact_1">Bifler is the french word meaning to slap someone in the face with your cock.</string>
+    <string name="fact_2">Defenestration (from Modern Latin fenestra), is the act of throwing someone or something out of a window.</string>
+    <string name="fact_3">The definition of cattywampus, often spelled catawampus, is not lined up or not arranged correctly, or diagonally. An example of something cattywampus are the positions of the items on the top of a coffee table after a two year old has been playing with them and moving them around.</string>
+</resources>
