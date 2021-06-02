@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menuItemBio"
+        android:title="Bio"
+        android:icon="@drawable/info_icon"/>
+
+    <item android:id="@+id/menuItemVacc"
+        android:title="Vaccination"
+        android:icon="@drawable/pen_icon"/>
+
+    <item android:id="@+id/menuItemAnni"
+        android:title="Anniversary"
+        android:icon="@drawable/calender_icon"/>
+
+    <item android:id="@+id/menuItemAbout"
+        android:title="About Us"
+        android:icon="@drawable/star_icon"/>
+
+</menu>
