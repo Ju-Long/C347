@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -22,6 +24,8 @@ public class BioFragment extends Fragment {
     TextView tvBio;
     Button btnBioEdit;
     FloatingActionButton btnBioSearch;
+    ActionBarDrawerToggle toggle;
+    DrawerLayout drawerLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,13 @@ public class BioFragment extends Fragment {
                 }
             });
             builder.create().show();
+        });
+
+        btnBioSearch.setOnClickListener(v -> {
+            View main_view = inflater.inflate(R.layout.activity_main, null);
+            drawerLayout = main_view.findViewById(R.id.drawerLayout);
+            toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.string.drawer_open, R.string.drawer_close);
+            drawerLayout.addDrawerListener(toggle);
         });
         return view;
     }
