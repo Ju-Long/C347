@@ -7,6 +7,7 @@ import androidx.core.content.PermissionChecker;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +23,10 @@ public class MainActivity extends AppCompatActivity {
         stop = findViewById(R.id.btnStop);
 
         start.setOnClickListener(v -> {
-            startService(new Intent(MainActivity.this, MyService.class));
+            if (checkPermission())
+                startService(new Intent(MainActivity.this, MyService.class));
+            else
+                Log.d("Permission: ", "denial");
         });
 
         stop.setOnClickListener(v -> {

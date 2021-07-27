@@ -1,15 +1,14 @@
-package com.myapplicationdev.android.demomusicplayer;
+package com.myapplicationdev.android.p10_gettingmylocation;
 
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Environment;
 import android.os.IBinder;
-import android.util.Log;
 
 import java.io.File;
 
-public class MyService extends Service {
+public class MusicService extends Service {
     private MediaPlayer player = new MediaPlayer();
 
     @Override
@@ -20,9 +19,7 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         try {
-            File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyFolder", "music.mp3");
-            Log.d("file path: ", file.getPath());
-
+            File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/P10", "music.mp3");
             player.setDataSource(file.getPath());
             player.prepare();
         } catch (Exception e) { e.printStackTrace(); }

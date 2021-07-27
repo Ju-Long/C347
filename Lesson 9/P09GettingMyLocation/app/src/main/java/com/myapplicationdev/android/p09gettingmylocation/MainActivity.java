@@ -107,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
                                 .snippet("Latitude: " + location.getLatitude() + ", Longitude: " + location.getLongitude())
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
+
+
                         try {
                             File fileLocation = new File(folderLocation, "data.txt");
                             if (fileLocation.createNewFile())
