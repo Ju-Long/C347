@@ -1,0 +1,4 @@
+rootProject.name = "TaskManager"
+include ':app'
+include ':app:wear'
+include ':wear'
