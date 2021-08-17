@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     var temp_num = 0.0
     var active = false
     var dot_active = false
+    var result_active = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
                 active = false
                 dot_active = false
                 function = 0
+                result_active = true
             }
             reset.id -> {
                 num = 0.0
@@ -93,16 +95,25 @@ class MainActivity : AppCompatActivity() {
         if (numButton.id == dot.id)
             dot_active = true
 
-        if (!active) {
-            num = (num * 10) + clicked
+        if (result_active && function == 0) {
+            result_active = false
+            num = 0.0
+            num += clicked
             if (dot_active)
-                num = (num / 10)
+                num /= 10
             resultNumber.text = "$num"
         } else {
-            temp_num = (temp_num * 10) + clicked
-            if (dot_active)
-                temp_num = (temp_num / 10)
-            resultNumber.text = "$temp_num"
+            if (!active) {
+                num = (num * 10) + clicked
+                if (dot_active)
+                    num = (num / 10)
+                resultNumber.text = "$num"
+            } else {
+                temp_num = (temp_num * 10) + clicked
+                if (dot_active)
+                    temp_num = (temp_num / 10)
+                resultNumber.text = "$temp_num"
+            }
         }
         if (function != 0) {
             val buttonClicked = findViewById<Button>(function)
