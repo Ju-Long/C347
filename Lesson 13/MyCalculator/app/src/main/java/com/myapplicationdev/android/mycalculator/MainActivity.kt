@@ -2,8 +2,10 @@ package com.myapplicationdev.android.mycalculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
@@ -27,10 +29,10 @@ class MainActivity : AppCompatActivity() {
         val functionClicked = btnClicked.id
         when (functionClicked) {
             toPositive.id -> {
-                if (active && temp_num < 0) {
+                if (active) {
                     temp_num *= -1
                     resultNumber.text = "$temp_num"
-                } else if (!active && num < 0) {
+                } else if (!active) {
                     num *= -1
                     resultNumber.text = "$num"
                 }
@@ -104,14 +106,32 @@ class MainActivity : AppCompatActivity() {
             resultNumber.text = "$num"
         } else {
             if (!active) {
-                num = (num * 10) + clicked
-                if (dot_active)
-                    num = (num / 10)
+                if (dot_active) {
+                    val decimal_digits = num.toString().split(".")[1]
+                    if (decimal_digits != "0") {
+                        num = (num * (ten_generator(decimal_digits))) + clicked
+                        num = (num / (ten_generator(decimal_digits)))
+                    } else {
+                        num = (num * 10) + clicked
+                        num /= 10
+                    }
+                } else
+                    num = (num * 10) + clicked
+
                 resultNumber.text = "$num"
             } else {
-                temp_num = (temp_num * 10) + clicked
-                if (dot_active)
-                    temp_num = (temp_num / 10)
+                if (dot_active) {
+                    val decimal_digits = temp_num.toString().split(".")[1]
+                    if (decimal_digits != "0") {
+                        temp_num = (temp_num * (ten_generator(decimal_digits))) + clicked
+                        temp_num = (temp_num / (ten_generator(decimal_digits)))
+                    } else {
+                        temp_num = (temp_num * 10) + clicked
+                        temp_num /= 10
+                    }
+                } else
+                    temp_num = (temp_num * 10) + clicked
+
                 resultNumber.text = "$temp_num"
             }
         }
@@ -120,5 +140,18 @@ class MainActivity : AppCompatActivity() {
             buttonClicked.setBackgroundColor(ContextCompat.getColor(this, R.color.orange))
         }
         numButton.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+    }
+
+    fun ten_generator(decimals: String): Int {
+        var number = "1"
+        for (i in 0..decimals.length) {
+            number += "0"
+        }
+
+        val grade = 'A'
+        if (grade == 'A' || grade == 'B') {
+            Toast.makeText(this, "pass", Toast.LENGTH_SHORT).show()
+        }
+        return number.toInt()
     }
 }
